@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+	body {
+        margin: 0;
+        padding: 0;
+        background-image: url("Owall-Hotel-Seoul-Exterior.jpeg");
+        background-repeat:no-repeat;
+        background-position: inherit;
+        /* background-size: cover; */
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        /* height: 300px; */
+        /* position: absolute; */
+       }
+       *{
+		   color: white;
+	   }
+	   input{
+		   color: black;
+	   }
+	   
+</style>
+</head>
+<body>
+<center>
+		<h1>Hotel Information Based On City</h1>
+<table>
+	<tr>
+		<th>Hotel Name</th>
+		<th>Hotel Contact</th>
+		<th>City</th>
+		<th>Price</th>
+		<th>Address</th>
+	</tr>
+	<tr th:each="hotel:${listOfHotels}">
+		<td th:text="${hotel.hotelname}"></td>
+		<td th:text="${hotel.contact}"></td>
+		<td th:text="${hotel.city}"></td>
+		<td th:text="${hotel.price}"></td>
+		<td th:text="${hotel.address}"></td>
+		<td>
+			<form action="takinghotelInformation">
+				<input type="text" th:value="${hotel.hotelname}" hidden="true" name="hotelname">
+				<input type="text" th:value="${hotel.contact}" hidden="true" name="contact">
+				<input type="text" th:value=${hotel.city} hidden="true" name="city">
+				<input type="text" th:value="${hotel.price}" hidden="true" name="price">
+				<input type="text" th:value="${hotel.address}" hidden="true" name="address">
+				<input type="submit" value="Book">
+			</form>
+		</td>
+	</tr>
+</table>
+</center>
+</body>
+</html>
